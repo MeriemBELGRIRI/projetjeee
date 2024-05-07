@@ -199,7 +199,13 @@ public class loginForm extends javax.swing.JFrame {
             ps.setString(2, String.valueOf(jPasswordField1.getPassword()));
             try (ResultSet rs = ps.executeQuery()) {
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Login Successful");
+//                JOptionPane.showMessageDialog(null, "Login Successful");
+                MainForm mf=new MainForm();
+                mf.setVisible(true);
+                mf.pack();
+                mf.setLocationRelativeTo(null);
+                this.dispose();
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Login Failed: Invalid username or password");
             }
