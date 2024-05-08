@@ -1,3 +1,5 @@
+package studentmanage;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -189,7 +191,7 @@ public class MainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel_CrsCount;
     private javax.swing.JLabel jLabel_StdCount;
-    private javax.swing.JLabel jLabel_Username;
+    public static javax.swing.JLabel jLabel_Username;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
