@@ -258,10 +258,20 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        addScoreForm Addscf= new addScoreForm();
+        Addscf.setVisible(true);
+        Addscf.pack();
+        Addscf.setLocationRelativeTo(null);
+        Addscf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
+        EditDeleteScore eddscf= new EditDeleteScore();
+        eddscf.setVisible(true);
+        eddscf.pack();
+        eddscf.setLocationRelativeTo(null);
+        eddscf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
