@@ -1,12 +1,21 @@
+package studentmanage;
+
+
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package studentmanage;
+
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import studentmanage.Course;
+import studentmanage.manageCourseForm;
+import static studentmanage.manageStudentsForm.jTable1;
+import javax.swing.JTextField;
 
 
 /**
@@ -187,24 +196,21 @@ public class AddCourseForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCourseActionPerformed
-
-              if(!c.isCourseExist(jTextField_CourseLabel.getText())){
-            String label =jTextField_CourseLabel.getText();
-            int hours = Integer.parseInt(jSpinner1.getValue().toString());
-            c.insertUpdateDeleteStudent('i',null,label,hours);
-            MainForm.jLabel_CrsCount.setText("Nombres des coures = "+Integer.toString(MyFunction.countData("course")));
-            manageCourseForm.jTable1.setModel(new DefaultTableModel(null,new Object[]{"Id","Label","hours"}));
-            c.fillCourseJtable(manageCourseForm.jTable1);
-            
-            
-            
-            
-        }else{
-            JOptionPane.showMessageDialog(null,"ce cour est exist déja");}
+ if (!c.isCourseExist(jTextField_CourseLabel.getText())) {
+        String label = jTextField_CourseLabel.getText();
+        int hours = Integer.parseInt(jSpinner1.getValue().toString());
+        c.insertUpdateDeleteStudent('i', null, label, hours);
+        // Utilisez la référence à la table de la classe manageCourseForm
+        MainForm.jLabel_CrsCount.setText("course Count = "+Integer.toString(MyFunction.countData("course")));
+     manageCourseForm.jTable1.setModel(new DefaultTableModel(null, new Object[]{"Id", "Label", "hours"}));
+        c.fillCourseJtable(manageCourseForm.jTable1);
+    } else {
+        JOptionPane.showMessageDialog(null, "Ce cours existe déjà.");
+    }
     }//GEN-LAST:event_jButtonAddCourseActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-          this.dispose();
+//          this.dispose();
 //        if(jTextField_STD_ID.getText().equals("")){
 //
 //            JOptionPane.showMessageDialog(null,"Aucun Eleve a ete selectionee");
@@ -229,7 +235,7 @@ public class AddCourseForm extends javax.swing.JFrame {
     private void jTextField_CourseLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_CourseLabelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_CourseLabelActionPerformed
-
+ 
     /**
      * @param args the command line arguments
      */
@@ -263,8 +269,8 @@ public class AddCourseForm extends javax.swing.JFrame {
                 new AddCourseForm().setVisible(true);
             }
         });
-    }
-
+   
+ } 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddCourse;
     private javax.swing.JButton jButtonCancel;
@@ -278,4 +284,4 @@ public class AddCourseForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField_CourseLabel;
     // End of variables declaration//GEN-END:variables
-}
+ }

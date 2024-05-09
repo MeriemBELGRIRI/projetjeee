@@ -1,11 +1,14 @@
+package studentmanage;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package studentmanage;
+
 
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -41,13 +44,13 @@ public class manageCourseForm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
         jButtonAddCourse = new javax.swing.JButton();
-        jButtonCancel = new javax.swing.JButton();
+        jButtonRemoveCourse = new javax.swing.JButton();
         jTextField_CourseLabel = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jTextField_CourseId = new javax.swing.JTextField();
-        jButtonEditStudent = new javax.swing.JButton();
+        jButtonEditCourse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,12 +80,12 @@ public class manageCourseForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButtonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/delete.png"))); // NOI18N
-        jButtonCancel.setText("Supprimer");
-        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRemoveCourse.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonRemoveCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/delete.png"))); // NOI18N
+        jButtonRemoveCourse.setText("Supprimer");
+        jButtonRemoveCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelActionPerformed(evt);
+                jButtonRemoveCourseActionPerformed(evt);
             }
         });
 
@@ -110,18 +113,19 @@ public class manageCourseForm extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Id:");
 
+        jTextField_CourseId.setEditable(false);
         jTextField_CourseId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_CourseIdActionPerformed(evt);
             }
         });
 
-        jButtonEditStudent.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButtonEditStudent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/update.png"))); // NOI18N
-        jButtonEditStudent.setText("Modifier");
-        jButtonEditStudent.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEditCourse.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButtonEditCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/update.png"))); // NOI18N
+        jButtonEditCourse.setText("Modifier");
+        jButtonEditCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditStudentActionPerformed(evt);
+                jButtonEditCourseActionPerformed(evt);
             }
         });
 
@@ -152,9 +156,9 @@ public class manageCourseForm extends javax.swing.JFrame {
                                 .addComponent(jTextField_CourseId, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(210, 210, 210))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButtonCancel)
+                        .addComponent(jButtonRemoveCourse)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonEditStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonEditCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonAddCourse)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,9 +186,9 @@ public class manageCourseForm extends javax.swing.JFrame {
                             .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(82, 82, 82)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonRemoveCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonEditStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonEditCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -224,7 +228,7 @@ public class manageCourseForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCourseActionPerformed
-AddCourseForm Addcf=new AddCourseForm();
+                AddCourseForm Addcf = new AddCourseForm();
                 Addcf.setVisible(true);
                 Addcf.pack();
                 Addcf.setLocationRelativeTo(null);
@@ -232,38 +236,42 @@ AddCourseForm Addcf=new AddCourseForm();
 
     }//GEN-LAST:event_jButtonAddCourseActionPerformed
 
-    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        this.dispose();
-        //        if(jTextField_STD_ID.getText().equals("")){
-            //
-            //            JOptionPane.showMessageDialog(null,"Aucun Eleve a ete selectionee");
-            //        }else{
-            //            int id = Integer.valueOf(jTextField_STD_ID.getText());
-            //
-            //            std.insertUpdateDeleteStudent('d', id, null, null, null, null, null);
-            //            std.fillStudentJtable(jTable1, "");
-            //            jTable1.setModel(new DefaultTableModel(null,new Object[]{"Id","Le Nom","Le Prenom","Genre","Phone","Adresse"}));
-            //            std.fillStudentJtable(jTable1, jTextField_Val_Find.getText());
-            //            MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
-            //            jTextField_STD_ID.setText("");
-            //            jtextArea_Address.setText("");
-            //            jTextField_LName.setText("");
-            //            jTextField_Phone.setText("");
-            //            jRadioButtonFemale.setSelected(false);
-            //            jRadioButtonMale.setSelected(false);
-            //
-            //        }
-    }//GEN-LAST:event_jButtonCancelActionPerformed
+    private void jButtonRemoveCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveCourseActionPerformed
+             if(!jTextField_CourseId.getText().equals("")){             
+              int id = Integer.parseInt(jTextField_CourseId.getText());
+              c.insertUpdateDeleteStudent('d',id,null,null);
+                manageCourseForm.jTable1.setModel(new DefaultTableModel(null,new Object[]{"Id","Label","hours"}));
+              c.fillCourseJtable(manageCourseForm.jTable1);
+              jTextField_CourseId.setText("");
+             jTextField_CourseLabel.setText("");
+             jTextField_CourseLabel.setText("");
+              jSpinner1.setValue(4);
+}
+    }//GEN-LAST:event_jButtonRemoveCourseActionPerformed
 
     private void jTextField_CourseLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_CourseLabelActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jTextField_CourseLabelActionPerformed
 
     private void jTextField_CourseIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_CourseIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_CourseIdActionPerformed
 
-    private void jButtonEditStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditStudentActionPerformed
+    private void jButtonEditCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditCourseActionPerformed
+if (!c.isCourseExist(jTextField_CourseLabel.getText())) {
+       int id = Integer.valueOf(jTextField_CourseId.getText());
+        String label = jTextField_CourseLabel.getText();
+        int hours = Integer.parseInt(jSpinner1.getValue().toString());
+        c.insertUpdateDeleteStudent('u', id, label, hours);
+        // Utilisez la référence à la table de la classe manageCourseForm
+        
+     manageCourseForm.jTable1.setModel(new DefaultTableModel(null, new Object[]{"Id", "Label", "hours"}));
+        c.fillCourseJtable(manageCourseForm.jTable1);
+        //JOptionPane.showMessageDialog(null, "Ce cour est modifiee.");
+    } else {
+        JOptionPane.showMessageDialog(null, "Ce cours existe déjà.");
+    }
+                                                   
 //        String fname=jTextField_FName.getText();
 //        String lname=jTextField_LName.getText();
 //        String phone=jTextField_Phone.getText();
@@ -282,12 +290,12 @@ AddCourseForm Addcf=new AddCourseForm();
 //            //MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
 //
 //        }
-    }//GEN-LAST:event_jButtonEditStudentActionPerformed
+    }//GEN-LAST:event_jButtonEditCourseActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int index = jTable1.getSelectedRow();
         jTextField_CourseId.setText(jTable1.getValueAt(index, 0).toString());
-        jTextField_CourseLabel.setText(jTable1.getValueAt(index, 1).toString());
+       jTextField_CourseLabel.setText(jTable1.getValueAt(index, 1).toString());
         jSpinner1.setValue(Integer.valueOf(jTable1.getValueAt(index, 2).toString()));
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -328,8 +336,8 @@ AddCourseForm Addcf=new AddCourseForm();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddCourse;
-    private javax.swing.JButton jButtonCancel;
-    private javax.swing.JButton jButtonEditStudent;
+    private javax.swing.JButton jButtonEditCourse;
+    private javax.swing.JButton jButtonRemoveCourse;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

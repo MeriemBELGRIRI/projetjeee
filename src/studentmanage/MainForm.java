@@ -39,7 +39,7 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemAddCourse = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -162,14 +162,14 @@ public class MainForm extends javax.swing.JFrame {
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/48.png"))); // NOI18N
         jMenu4.setText("Cours");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/personadd.png"))); // NOI18N
-        jMenuItem3.setText("Ajouter");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemAddCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/personadd.png"))); // NOI18N
+        jMenuItemAddCourse.setText("Ajouter");
+        jMenuItemAddCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItemAddCourseActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
+        jMenu4.add(jMenuItemAddCourse);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/48.png"))); // NOI18N
         jMenuItem4.setText("Modifier");
@@ -248,16 +248,20 @@ public class MainForm extends javax.swing.JFrame {
                 mngsf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-         manageCourseForm Mngcf=new manageCourseForm();
+    private void jMenuItemAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAddCourseActionPerformed
+          AddCourseForm Addcf=new AddCourseForm();
+                Addcf.setVisible(true);
+                Addcf.pack();
+                Addcf.setLocationRelativeTo(null);
+                Addcf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItemAddCourseActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+          manageCourseForm Mngcf=new manageCourseForm();
                 Mngcf.setVisible(true);
                 Mngcf.pack();
                 Mngcf.setLocationRelativeTo(null);
                 Mngcf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -318,11 +322,11 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItemAddCourse;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
