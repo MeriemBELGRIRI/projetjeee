@@ -212,7 +212,7 @@ public class loginForm extends javax.swing.JFrame {
                 mf.setExtendedState(JFrame.MAXIMIZED_BOTH);//bach page tle3 kbira
                 MainForm.jLabel_Username.setText("Bienvenue<"+jTextField_username.getText()+">");
                 MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
-                MainForm.jLabel_CrsCount.setText("Nombres des cours = "+Integer.toString(MyFunction.countData("user")));
+                MainForm.jLabel_CrsCount.setText("Nombres des cours = "+Integer.toString(MyFunction.countData("course")));
                 this.dispose();
                 
             } else {

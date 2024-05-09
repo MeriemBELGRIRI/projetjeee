@@ -4,6 +4,8 @@
  */
 package studentmanage;
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,12 +21,19 @@ public class manageStudentsForm extends javax.swing.JFrame {
      * Creates new form manageStudentsForm
      */
     student std =new student();
+    DefaultTableModel model;
     public manageStudentsForm() {
         initComponents();
         std.fillStudentJtable(jTable1, "");
         ButtonGroup bg=new ButtonGroup();
         bg.add(jRadioButtonMale);
         bg.add(jRadioButtonFemale);
+         model =(DefaultTableModel) jTable1.getModel();
+         jTable1.setRowHeight(40);
+         jTable1.setShowGrid(true);
+         jTable1.setGridColor(Color.red);
+         jTable1.setSelectionBackground(Color.BLACK);
+         
     }
 
     /**
@@ -168,6 +177,11 @@ public class manageStudentsForm extends javax.swing.JFrame {
                 jTable1MouseClicked(evt);
             }
         });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jTextField_STD_ID.setEditable(false);
@@ -296,7 +310,10 @@ public class manageStudentsForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,7 +351,18 @@ public class manageStudentsForm extends javax.swing.JFrame {
         }else{
         int id = Integer.valueOf(jTextField_STD_ID.getText());
         
-        std.insertUpdateDeleteStudent('d', id, null, null, null, null, null);  
+        std.insertUpdateDeleteStudent('d', id, null, null, null, null, null); 
+        std.fillStudentJtable(jTable1, "");
+        jTable1.setModel(new DefaultTableModel(null,new Object[]{"Id","Le Nom","Le Prenom","Genre","Phone","Adresse"}));
+        std.fillStudentJtable(jTable1, jTextField_Val_Find.getText());
+        MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
+        jTextField_STD_ID.setText("");
+        jtextArea_Address.setText("");
+        jTextField_LName.setText("");
+        jTextField_Phone.setText("");
+        jRadioButtonFemale.setSelected(false);
+        jRadioButtonMale.setSelected(false);
+        
         }
     }//GEN-LAST:event_jButtonRemoveStudentActionPerformed
  public boolean verifText(){
@@ -381,10 +409,10 @@ public class manageStudentsForm extends javax.swing.JFrame {
                 Addsf.setLocationRelativeTo(null);
                 Addsf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButtonAddStudent2ActionPerformed
-
+    int rowIndex;
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int rowIndex = jTable1.getSelectedRow();
-        DefaultTableModel model =(DefaultTableModel) jTable1.getModel();
+         rowIndex = jTable1.getSelectedRow();
+        
         
         if(model.getValueAt(rowIndex, 3).toString().equals("Male")){
         
@@ -427,6 +455,29 @@ public class manageStudentsForm extends javax.swing.JFrame {
     private void jTextField_STD_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_STD_IDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_STD_IDActionPerformed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+        
+        if(evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode()== KeyEvent.VK_DOWN){
+            rowIndex = jTable1.getSelectedRow();
+       jTextField_STD_ID.setText(model.getValueAt(rowIndex, 0).toString());
+        jTextField_FName.setText(model.getValueAt(rowIndex, 1).toString());
+        jTextField_LName.setText(model.getValueAt(rowIndex, 2).toString());
+        jTextField_Phone.setText(model.getValueAt(rowIndex, 4).toString());
+        jtextArea_Address.setText(model.getValueAt(rowIndex, 5).toString());
+        
+        if(model.getValueAt(rowIndex, 3).toString().equals("Male")){
+        
+        jRadioButtonFemale.setSelected(false);
+        jRadioButtonMale.setSelected(true);
+       }else{
+        
+        jRadioButtonMale.setSelected(false);
+        jRadioButtonFemale.setSelected(true);
+        }
+        }
+        
+    }//GEN-LAST:event_jTable1KeyReleased
 
     /**
      * @param args the command line arguments
