@@ -2,6 +2,8 @@ package studentmanage;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import static studentmanage.manageStudentsForm.jTable1;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,17 +14,18 @@ import javax.swing.JOptionPane;
  *
  * @author hp
  */
+    
 public class AddStudentForm extends javax.swing.JFrame {
-
+student std=new student();
     /**
      * Creates new form AddStudentForm
      */
     public AddStudentForm() {
         initComponents();
         ButtonGroup bg =new ButtonGroup();
-        bg.add(jRadioButtonMale);
         bg.add(jRadioButtonFemale);
-        jRadioButtonMale.setSelected(true);
+        bg.add(jRadioButtonMale);
+        jRadioButtonFemale.setSelected(true);
         
     }
 
@@ -45,8 +48,8 @@ public class AddStudentForm extends javax.swing.JFrame {
         jTextField_FName = new javax.swing.JTextField();
         jTextField_LName = new javax.swing.JTextField();
         jTextField_Phone = new javax.swing.JTextField();
-        jRadioButtonMale = new javax.swing.JRadioButton();
         jRadioButtonFemale = new javax.swing.JRadioButton();
+        jRadioButtonMale = new javax.swing.JRadioButton();
         jtextArea_Address = new java.awt.TextArea();
         jButtonCancel = new javax.swing.JButton();
         jButtonAddStudent1 = new javax.swing.JButton();
@@ -93,12 +96,12 @@ public class AddStudentForm extends javax.swing.JFrame {
             }
         });
 
-        jRadioButtonMale.setText("Femme");
+        jRadioButtonFemale.setText("Femme");
 
-        jRadioButtonFemale.setText("Homme");
-        jRadioButtonFemale.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonMale.setText("Homme");
+        jRadioButtonMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonFemaleActionPerformed(evt);
+                jRadioButtonMaleActionPerformed(evt);
             }
         });
 
@@ -138,9 +141,9 @@ public class AddStudentForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jRadioButtonMale, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRadioButtonFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
-                        .addComponent(jRadioButtonFemale))
+                        .addComponent(jRadioButtonMale))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,8 +183,8 @@ public class AddStudentForm extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jRadioButtonMale)
-                    .addComponent(jRadioButtonFemale))
+                    .addComponent(jRadioButtonFemale)
+                    .addComponent(jRadioButtonMale))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -214,9 +217,9 @@ public class AddStudentForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButtonFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFemaleActionPerformed
+    private void jRadioButtonMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMaleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonFemaleActionPerformed
+    }//GEN-LAST:event_jRadioButtonMaleActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
           this.dispose();
@@ -257,9 +260,12 @@ public class AddStudentForm extends javax.swing.JFrame {
         String lname=jTextField_LName.getText();
         String phone=jTextField_Phone.getText();
         String address=jtextArea_Address.getText();
-        String sex ="Male";
+        String sex;
         if(jRadioButtonFemale.isSelected()){
             sex="Female";
+        }else{
+        sex ="Male";
+        
         }
         if(verifText()){
         
@@ -267,6 +273,12 @@ public class AddStudentForm extends javax.swing.JFrame {
         std.insertUpdateDeleteStudent('i', null, fname, lname, sex, phone, address);
         MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
         
+        
+        manageStudentsForm.jTable1.setModel(new DefaultTableModel(null,new Object[]{"Id","Le Nom","Le Prenom","Genre","Phone","Adresse"}));
+         
+        
+      std.fillStudentJtable(manageStudentsForm.jTable1, "");
+      
         }
        
         
