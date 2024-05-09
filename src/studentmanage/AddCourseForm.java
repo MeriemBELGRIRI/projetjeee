@@ -185,34 +185,34 @@ public class AddCourseForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_CourseLabelActionPerformed
 
     private void jButtonAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddCourseActionPerformed
-        AddStudentForm Addsf=new AddStudentForm();
-        Addsf.setVisible(true);
-        Addsf.pack();
-        Addsf.setLocationRelativeTo(null);
-        Addsf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        AddStudentForm Addsf=new AddStudentForm();
+//        Addsf.setVisible(true);
+//        Addsf.pack();
+//        Addsf.setLocationRelativeTo(null);
+//        Addsf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButtonAddCourseActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-
-        if(jTextField_STD_ID.getText().equals("")){
-
-            JOptionPane.showMessageDialog(null,"Aucun Eleve a ete selectionee");
-        }else{
-            int id = Integer.valueOf(jTextField_STD_ID.getText());
-
-            std.insertUpdateDeleteStudent('d', id, null, null, null, null, null);
-            std.fillStudentJtable(jTable1, "");
-            jTable1.setModel(new DefaultTableModel(null,new Object[]{"Id","Le Nom","Le Prenom","Genre","Phone","Adresse"}));
-            std.fillStudentJtable(jTable1, jTextField_Val_Find.getText());
-            MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
-            jTextField_STD_ID.setText("");
-            jtextArea_Address.setText("");
-            jTextField_LName.setText("");
-            jTextField_Phone.setText("");
-            jRadioButtonFemale.setSelected(false);
-            jRadioButtonMale.setSelected(false);
-
-        }
+     this.dispose();
+//        if(jTextField_STD_ID.getText().equals("")){
+//
+//            JOptionPane.showMessageDialog(null,"Aucun Eleve a ete selectionee");
+//        }else{
+//            int id = Integer.valueOf(jTextField_STD_ID.getText());
+//
+//            std.insertUpdateDeleteStudent('d', id, null, null, null, null, null);
+//            std.fillStudentJtable(jTable1, "");
+//            jTable1.setModel(new DefaultTableModel(null,new Object[]{"Id","Le Nom","Le Prenom","Genre","Phone","Adresse"}));
+//            std.fillStudentJtable(jTable1, jTextField_Val_Find.getText());
+//            MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
+//            jTextField_STD_ID.setText("");
+//            jtextArea_Address.setText("");
+//            jTextField_LName.setText("");
+//            jTextField_Phone.setText("");
+//            jRadioButtonFemale.setSelected(false);
+//            jRadioButtonMale.setSelected(false);
+//
+//        }
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     /**
