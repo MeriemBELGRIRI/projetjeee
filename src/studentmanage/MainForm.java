@@ -1,5 +1,5 @@
 package studentmanage;
-
+import javax.swing.JFrame;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -164,6 +164,8 @@ public class MainForm extends javax.swing.JFrame {
                 Addsf.setVisible(true);
                 Addsf.pack();
                 Addsf.setLocationRelativeTo(null);
+                Addsf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
