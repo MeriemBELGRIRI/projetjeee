@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -103,8 +105,27 @@ public void insertUpdateDeleteStudent(char operation, Integer id, String Label,I
         }
         return isExist;
     }
+    public void fillCourseJtable(JTable table){
+        Connection con = Connectionbd.getConnection();
+        PreparedStatement ps;
+        try{
+            ps=con.prepareStatement("SELECT * FROM `course`");
+            ResultSet rs =ps.executeQuery();
+            DefaultTableModel model=(DefaultTableModel)table.getModel();
+            Object[] row;
+            while(rs.next()){
+            row=new Object[3];
+            row[0]=rs.getInt(1);
+            row[1]=rs.getString(2);
+            row[2]=rs.getInt(3);
+            model.addRow(row);
+            }
+        } catch (SQLException ex) {
+        Logger.getLogger(Course.class.getName()).log(Level.SEVERE, null, ex);
+    }
+   }
     //for course id in the score
-    private int getCourseId(String courseLabel){
+    public int getCourseId(String courseLabel){
         int courseId=0;
          Connection con = Connectionbd.getConnection();
         PreparedStatement ps;

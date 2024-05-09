@@ -1,5 +1,26 @@
 package studentmanage;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -45,6 +66,9 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -214,6 +238,29 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/schoola.png"))); // NOI18N
+        jMenu6.setText("Notes");
+
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/personadd.png"))); // NOI18N
+        jMenuItem8.setText("Importer");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem8);
+
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/48.png"))); // NOI18N
+        jMenuItem9.setText("Exporter");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu6);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -278,6 +325,134 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+       //importer yarbe tsdeq
+        try {
+            File xmlFile = new File("C:\\Users\\Lenovo T460s\\OneDrive\\Documents\\NetBeansProjects\\projetjeee\\import.xml");
+
+            // Lecture du fichier XML
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(xmlFile);
+
+            // Récupération des données depuis le document XML
+            NodeList entries = document.getElementsByTagName("entry");
+
+            // Connexion à la base de données
+            Connection con = Connectionbd.getConnection();
+
+            // Insertion des données dans la base de données
+            PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO `student`( `first_name`, `last_name`, `sex`, `adress`, `phone`) VALUES (?,?,?,?,?)");
+
+            // Traitement de chaque entrée dans le fichier XML
+            for (int i = 0; i < entries.getLength(); i++) {
+                Element entry = (Element) entries.item(i);
+
+                // Extraction des valeurs des éléments enfants
+                
+                String firstName = getElementText(entry, "first_name");
+                String lastName = getElementText(entry, "last_name");
+                String sex = getElementText(entry, "sex");
+                String address = getElementText(entry, "address");
+                String phone = getElementText(entry, "phone");
+
+                // Paramétrage des valeurs dans la requête SQL
+               
+                preparedStatement.setString(1, firstName);
+                preparedStatement.setString(2, lastName);
+                preparedStatement.setString(3, sex);
+                preparedStatement.setString(4, address);
+                preparedStatement.setString(5, phone);
+
+                // Exécution de la requête SQL d'insertion
+                preparedStatement.executeUpdate();
+            }
+
+            JOptionPane.showMessageDialog(this, "Data imported from XML successfully!");
+
+            con.close();
+        } catch (ParserConfigurationException | SAXException | IOException | SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error importing data from XML: " + ex.getMessage());
+        }
+    }
+
+    private String getElementText(Element parentElement, String childTagName) {
+        Node childNode = parentElement.getElementsByTagName(childTagName).item(0);
+        if (childNode != null) {
+            return childNode.getTextContent().trim();  // Retourne le contenu du nœud s'il existe
+        }
+        return "";  // Retourne une chaîne vide si le nœud n'existe pas
+    
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        //exporter
+         try {
+            // Connexion à la base de données
+            Connection con = Connectionbd.getConnection();
+
+            // Récupération des données de la base de données
+            PreparedStatement st = con.prepareStatement("SELECT * FROM student");
+            ResultSet resultSet = st.executeQuery();
+
+            // Création du document XML
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+
+            Element rootElement = document.createElement("data");
+            document.appendChild(rootElement);
+
+            // Parcours des résultats et création des éléments XML
+            while (resultSet.next()) {
+                Element entry = document.createElement("entry");
+                rootElement.appendChild(entry);
+
+                Element id = document.createElement("id");
+                id.appendChild(document.createTextNode(resultSet.getString("id")));
+                entry.appendChild(id);
+                
+                
+                 Element first_name = document.createElement("first_name");
+                id.appendChild(document.createTextNode(resultSet.getString("first_name")));
+                entry.appendChild(first_name);
+                
+                Element last_name = document.createElement("last_name");
+                id.appendChild(document.createTextNode(resultSet.getString("last_name")));
+                entry.appendChild(last_name);
+                Element sex = document.createElement("sex");
+                id.appendChild(document.createTextNode(resultSet.getString("sex")));
+                entry.appendChild(sex);
+                 Element adress = document.createElement("adress");
+                id.appendChild(document.createTextNode(resultSet.getString("adress")));
+                entry.appendChild(sex);
+                 
+                
+                Element phone = document.createElement("phone");
+                id.appendChild(document.createTextNode(resultSet.getString("phone")));
+                entry.appendChild(phone);
+
+                // Ajouter d'autres colonnes si nécessaire...
+            }
+
+            // Écriture du document XML dans un fichier
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(new File("exported_data.xml"));
+            transformer.transform(source, result);
+
+            JOptionPane.showMessageDialog(this, "Data exported to XML successfully!");
+
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error exporting data to XML: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -321,6 +496,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -329,6 +505,8 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

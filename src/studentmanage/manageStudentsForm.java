@@ -4,10 +4,13 @@
  */
 package studentmanage;
 
+import java.awt.Color;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static studentmanage.EditDeleteScore.jTable1;
+import static studentmanage.addScoreForm.jTable1;
 
 /**
  *
@@ -19,12 +22,18 @@ public class manageStudentsForm extends javax.swing.JFrame {
      * Creates new form manageStudentsForm
      */
     student std =new student();
+    DefaultTableModel model;
     public manageStudentsForm() {
         initComponents();
         std.fillStudentJtable(jTable1, "");
         ButtonGroup bg=new ButtonGroup();
         bg.add(jRadioButtonMale);
         bg.add(jRadioButtonFemale);
+        model = (DefaultTableModel)jTable1.getModel();
+         jTable1.setRowHeight(40);
+         jTable1.setShowGrid(true);
+         jTable1.setGridColor(Color.yellow);
+         jTable1.setSelectionBackground(Color.BLACK);
     }
 
     /**
@@ -296,7 +305,7 @@ public class manageStudentsForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 942, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,9 +341,10 @@ public class manageStudentsForm extends javax.swing.JFrame {
         
           JOptionPane.showMessageDialog(null,"Aucun Eleve a ete selectionee");
         }else{
-        int id = Integer.valueOf(jTextField_STD_ID.getText());
-        
+        int id = Integer.parseInt(jTextField_STD_ID.getText());
         std.insertUpdateDeleteStudent('d', id, null, null, null, null, null);  
+        jTable1.setModel(new DefaultTableModel(null,new Object[]{"id", "last_name","first_name", "sex", "phone", "adress"}));
+        std.fillStudentJtable(jTable1,"");
         }
     }//GEN-LAST:event_jButtonRemoveStudentActionPerformed
  public boolean verifText(){

@@ -83,7 +83,8 @@ public class student {
          
          
           if (operation == 'd') {// u for delete
-        
+        int YesOrNo = JOptionPane.showConfirmDialog(null,"Les notes de cet etudiant seront supprimer egalement","Supprimer",JOptionPane.OK_CANCEL_OPTION);
+        if(YesOrNo ==0){
             try {
                 // Utilisez con.prepareStatement pour préparer la déclaration
                 ps = con.prepareStatement("DELETE FROM `student` WHERE `id`=?");
@@ -111,7 +112,7 @@ public class student {
                 }
             }
         }         
-    }
+    }}
     
     public void fillStudentJtable(JTable table,String valueToSearch){
          Connection con=Connectionbd.getConnection();
