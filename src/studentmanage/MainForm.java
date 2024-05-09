@@ -238,10 +238,10 @@ public class MainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/schoola.png"))); // NOI18N
-        jMenu6.setText("Notes");
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/database.png"))); // NOI18N
+        jMenu6.setText("Partie_xml");
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/personadd.png"))); // NOI18N
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/import.png"))); // NOI18N
         jMenuItem8.setText("Importer");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,7 +250,7 @@ public class MainForm extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem8);
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/48.png"))); // NOI18N
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/export.png"))); // NOI18N
         jMenuItem9.setText("Exporter");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
