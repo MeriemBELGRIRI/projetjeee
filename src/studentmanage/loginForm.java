@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 /**
  
 /**
@@ -208,6 +209,10 @@ public class loginForm extends javax.swing.JFrame {
                 mf.setVisible(true);
                 mf.pack();
                 mf.setLocationRelativeTo(null);
+                mf.setExtendedState(JFrame.MAXIMIZED_BOTH);//bach page tle3 kbira
+                MainForm.jLabel_Username.setText("Bienvenue<"+jTextField_username.getText()+">");
+                MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
+                MainForm.jLabel_CrsCount.setText("Nombres des cours = "+Integer.toString(MyFunction.countData("user")));
                 this.dispose();
                 
             } else {

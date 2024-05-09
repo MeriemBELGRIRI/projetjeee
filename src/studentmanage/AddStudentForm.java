@@ -1,6 +1,9 @@
 package studentmanage;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import static studentmanage.manageStudentsForm.jTable1;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,17 +14,18 @@ import javax.swing.ButtonGroup;
  *
  * @author hp
  */
+    
 public class AddStudentForm extends javax.swing.JFrame {
-
+student std=new student();
     /**
      * Creates new form AddStudentForm
      */
     public AddStudentForm() {
         initComponents();
         ButtonGroup bg =new ButtonGroup();
-        bg.add(jRadioButtonMale);
         bg.add(jRadioButtonFemale);
-        jRadioButtonMale.setSelected(true);
+        bg.add(jRadioButtonMale);
+        jRadioButtonFemale.setSelected(true);
         
     }
 
@@ -44,9 +48,9 @@ public class AddStudentForm extends javax.swing.JFrame {
         jTextField_FName = new javax.swing.JTextField();
         jTextField_LName = new javax.swing.JTextField();
         jTextField_Phone = new javax.swing.JTextField();
-        jRadioButtonMale = new javax.swing.JRadioButton();
         jRadioButtonFemale = new javax.swing.JRadioButton();
-        textArea_Adress = new java.awt.TextArea();
+        jRadioButtonMale = new javax.swing.JRadioButton();
+        jtextArea_Address = new java.awt.TextArea();
         jButtonCancel = new javax.swing.JButton();
         jButtonAddStudent1 = new javax.swing.JButton();
 
@@ -92,16 +96,16 @@ public class AddStudentForm extends javax.swing.JFrame {
             }
         });
 
-        jRadioButtonMale.setText("Femme");
+        jRadioButtonFemale.setText("Femme");
 
-        jRadioButtonFemale.setText("Homme");
-        jRadioButtonFemale.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonMale.setText("Homme");
+        jRadioButtonMale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonFemaleActionPerformed(evt);
+                jRadioButtonMaleActionPerformed(evt);
             }
         });
 
-        textArea_Adress.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jtextArea_Address.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
 
         jButtonCancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButtonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/delete.png"))); // NOI18N
@@ -115,6 +119,11 @@ public class AddStudentForm extends javax.swing.JFrame {
         jButtonAddStudent1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButtonAddStudent1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/studentmanage/images/plus.png"))); // NOI18N
         jButtonAddStudent1.setText("Ajouter");
+        jButtonAddStudent1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddStudent1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,7 +131,7 @@ public class AddStudentForm extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addComponent(jButtonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                .addComponent(jButtonCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAddStudent1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
@@ -132,9 +141,9 @@ public class AddStudentForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jRadioButtonMale, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRadioButtonFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
-                        .addComponent(jRadioButtonFemale))
+                        .addComponent(jRadioButtonMale))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,7 +160,7 @@ public class AddStudentForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(textArea_Adress, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtextArea_Address, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -174,8 +183,8 @@ public class AddStudentForm extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jRadioButtonMale)
-                    .addComponent(jRadioButtonFemale))
+                    .addComponent(jRadioButtonFemale)
+                    .addComponent(jRadioButtonMale))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -186,7 +195,7 @@ public class AddStudentForm extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textArea_Adress, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jtextArea_Address, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,9 +207,7 @@ public class AddStudentForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,9 +217,9 @@ public class AddStudentForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButtonFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFemaleActionPerformed
+    private void jRadioButtonMaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMaleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonFemaleActionPerformed
+    }//GEN-LAST:event_jRadioButtonMaleActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
           this.dispose();
@@ -227,12 +234,55 @@ public class AddStudentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_PhoneKeyPressed
 
     private void jTextField_PhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PhoneKeyTyped
-        // Allow only numbers
+        // Allow only numbers bhal ila mknkhelihch ykteb les caracteres gaa3
         if(!Character.isDigit(evt.getKeyChar())){
         evt.consume();
         
         }
     }//GEN-LAST:event_jTextField_PhoneKeyTyped
+    public boolean verifText(){
+    
+        if(jTextField_FName.getText().equals("")||jTextField_LName.getText().equals("")
+                ||jTextField_Phone.getText().equals("")||jtextArea_Address.getText().equals(""))
+        {
+            
+            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs");
+            return false;
+        
+        }else{
+        
+        
+    return true;
+        }
+    }
+    private void jButtonAddStudent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddStudent1ActionPerformed
+        String fname=jTextField_FName.getText();
+        String lname=jTextField_LName.getText();
+        String phone=jTextField_Phone.getText();
+        String address=jtextArea_Address.getText();
+        String sex;
+        if(jRadioButtonFemale.isSelected()){
+            sex="Female";
+        }else{
+        sex ="Male";
+        
+        }
+        if(verifText()){
+        
+         student std=new student();
+        std.insertUpdateDeleteStudent('i', null, fname, lname, sex, phone, address);
+        MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
+        
+        
+        manageStudentsForm.jTable1.setModel(new DefaultTableModel(null,new Object[]{"Id","Le Nom","Le Prenom","Genre","Phone","Adresse"}));
+         
+        
+      std.fillStudentJtable(manageStudentsForm.jTable1, "");
+      
+        }
+       
+        
+    }//GEN-LAST:event_jButtonAddStudent1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,6 +334,6 @@ public class AddStudentForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_FName;
     private javax.swing.JTextField jTextField_LName;
     private javax.swing.JTextField jTextField_Phone;
-    private java.awt.TextArea textArea_Adress;
+    private java.awt.TextArea jtextArea_Address;
     // End of variables declaration//GEN-END:variables
 }

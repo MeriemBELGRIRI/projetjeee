@@ -4,6 +4,8 @@
  */
 package studentmanage;
 
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author Lenovo T460s
@@ -13,10 +15,19 @@ public class addScoreForm extends javax.swing.JFrame {
     /**
      * Creates new form addScoreForm
      */
+    Course c =new Course();
+    student s=new student();
     public addScoreForm() {
         initComponents();
+        c.fillCourseCombo(jComboBoxCourseId);
+        s.fillStudentJtable(jTable1, "");
     }
-
+    private void  HideColumn(int colIndex){
+        TableColumn col = jTable1.getColumnModel().getColumn(colIndex);
+        col.setMaxWidth(0);
+        col.setMinWidth(0);
+        col.setPreferredWidth(0);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
