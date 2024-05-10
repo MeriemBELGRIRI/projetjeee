@@ -221,7 +221,7 @@ public class addScoreForm extends javax.swing.JFrame {
         int stdId=Integer.parseInt(jTextField_StudentId.getText());
         int crsId=c.getCourseId(jComboBoxCourseId.getSelectedItem().toString());
         double scr =Double.parseDouble(jTextField_score.getText());
-//        System.out.println(scr);
+        System.out.println(stdId);
         sc.insertUpdateDeleteStudent('i', stdId, crsId,scr, jTextField_decription1.getText());
   sc.fillScoreJtable(EditDeleteScore.jTable1);      
     }//GEN-LAST:event_jButtonAddScoreActionPerformed

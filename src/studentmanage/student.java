@@ -126,7 +126,7 @@ public class student {
          
          while(rs.next()){
              row=new Object[6];
-         row[0] = rs.getInt(1);
+          row[0] = rs.getInt(1);
           row[1] = rs.getString(2);
           row[2] = rs.getString(3);
           row[3] = rs.getString(4);
@@ -137,7 +137,6 @@ public class student {
          
          
          }catch(SQLException ex){
-         
          Logger.getLogger(student.class.getName()).log(Level.SEVERE, null, ex);
          }
     

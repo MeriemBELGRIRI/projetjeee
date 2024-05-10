@@ -3,18 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/loginForm.java</file>
+            <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/MainForm.java</file>
             <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/addScoreForm.java</file>
+            <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/manageStudentsForm.java</file>
             <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/Connectionbd.java</file>
-            <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/AddStudentForm.java</file>
-=======
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/StudentManage/src/studentmanage/manageStudentsForm.java</file>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/StudentManage/src/studentmanage/MainForm.java</file>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/StudentManage/src/studentmanage/student.java</file>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/StudentManage/src/studentmanage/AddStudentForm.java</file>
-            <file>file:/C:/Users/hp/Documents/NetBeansProjects/StudentManage/src/studentmanage/loginForm.java</file>
->>>>>>> origin/meriem
+            <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/Score.java</file>
+            <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/DataTransferApp.java</file>
+            <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/Course.java</file>
+            <file>file:/C:/Users/Lenovo%20T460s/OneDrive/Documents/NetBeansProjects/projetjeee/src/studentmanage/MyFunction.java</file>
         </group>
     </open-files>
 </project-private>

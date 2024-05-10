@@ -182,47 +182,59 @@ public class loginForm extends javax.swing.JFrame {
 
     private void jButton_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_loginActionPerformed
          // TODO add your handling code here:
-        lbl_u.setVisible(false);
-        lbl_p.setVisible(false);
-        if(jTextField_username.getText().equals("")){
-        lbl_u.setVisible(true);    
-        }
-        if(String.valueOf(jPasswordField1.getPassword()).equals("")) {
-         lbl_p.setVisible(true);
-        }
-         try{
-            // Obtain database connection
-//            // Load the MySQL JDBC driver
-//                Class.forName("com.mysql.cj.jdbc.Driver");
-//            // Establish a connection to the database
-//            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/stdmgdb?useSSL=false&serverTimezone=UTC", "root", "");            
-            Connection con= Connectionbd.getConnection();
-            // Prepare SQL query with placeholders for username and password
-            PreparedStatement ps;
-            ps = con.prepareStatement("SELECT * FROM user WHERE username = ? AND password = ?");
-            ps.setString(1, jTextField_username.getText());
-            ps.setString(2, String.valueOf(jPasswordField1.getPassword()));
-            try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-//                JOptionPane.showMessageDialog(null, "Login Successful");
-                MainForm mf=new MainForm();
-                mf.setVisible(true);
-                mf.pack();
-                mf.setLocationRelativeTo(null);
-                mf.setExtendedState(JFrame.MAXIMIZED_BOTH);//bach page tle3 kbira
-                MainForm.jLabel_Username.setText("Bienvenue<"+jTextField_username.getText()+">");
-                MainForm.jLabel_StdCount.setText("Nombres des eleves = "+Integer.toString(MyFunction.countData("student")));
-                MainForm.jLabel_CrsCount.setText("Nombres des cours = "+Integer.toString(MyFunction.countData("user")));
-                this.dispose();
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Login Failed: Invalid username or password");
+         
+           lbl_u.setVisible(false);
+    lbl_p.setVisible(false);
+    
+    String username = jTextField_username.getText();
+    String password = String.valueOf(jPasswordField1.getPassword());
+
+    if (username.isEmpty()) {
+        lbl_u.setVisible(true);
+        return;
+    }
+    
+    if (password.isEmpty()) {
+        lbl_p.setVisible(true);
+        return;
+    }
+         
+         
+         
+         
+       try{
+            Connection con = Connectionbd.getConnection();
+        
+        if (con != null) {
+            String query = "SELECT * FROM user WHERE username = ? AND password = ?";
+            try (PreparedStatement ps = con.prepareStatement(query)) {
+                ps.setString(1, username);
+                ps.setString(2, password);
+
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        JOptionPane.showMessageDialog(null, "Login Successful");
+                        MainForm mf = new MainForm();
+                        mf.setVisible(true);
+                        mf.pack();
+                        mf.setLocationRelativeTo(null);
+                        mf.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        MainForm.jLabel_Username.setText("Welcome, " + username);
+                        MainForm.jLabel_StdCount.setText("Number of students = " + MyFunction.countData("student"));
+                        MainForm.jLabel_CrsCount.setText("Number of courses = " + MyFunction.countData("course"));
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Login Failed: Invalid username or password");
+                    }
+                }
             }
-        }       
-         }catch (SQLException e) {
-            // Handle any errors that occur during loading the driver or connecting to the database
-            System.out.println(e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(null, "Failed to establish database connection");
         }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Database Error: " + e.getMessage());
+        e.printStackTrace(); // Ajoutez ceci pour afficher la trace complète de l'erreur
+    }
     }//GEN-LAST:event_jButton_loginActionPerformed
 
     private void jButton_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cancelActionPerformed

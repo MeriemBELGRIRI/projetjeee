@@ -31,7 +31,7 @@ public void insertUpdateDeleteStudent(char operation, Integer id, String Label,I
         
             try {
                 // Utilisez con.prepareStatement pour préparer la déclaration
-                ps = con.prepareStatement("INSERT INTO `course`(`label`, `hours_number`, sex, phone, adress) VALUES(?,?,?,?,?)");
+                ps = con.prepareStatement("INSERT INTO `course`( `label`, `hours_number`) VALUES (?,?)");
                 // Assurez-vous d'attribuer les valeurs aux paramètres de la déclaration
                 ps.setString(1, Label);
                 ps.setInt(2, hours);
@@ -54,8 +54,8 @@ public void insertUpdateDeleteStudent(char operation, Integer id, String Label,I
                 ps.setString(1, Label);
                 ps.setInt(2, hours);
                 ps.setInt(3, id);
+               
          
-              
                 // Exécutez la déclaration
                 if (ps.executeUpdate() > 0) {
                     JOptionPane.showMessageDialog(null, " Le cours a ete modifiee");
@@ -105,25 +105,25 @@ public void insertUpdateDeleteStudent(char operation, Integer id, String Label,I
         }
         return isExist;
     }
-    public void fillCourseJtable(JTable table){
-        Connection con = Connectionbd.getConnection();
-        PreparedStatement ps;
-        try{
-            ps=con.prepareStatement("SELECT * FROM `course`");
-            ResultSet rs =ps.executeQuery();
-            DefaultTableModel model=(DefaultTableModel)table.getModel();
-            Object[] row;
-            while(rs.next()){
-            row=new Object[3];
-            row[0]=rs.getInt(1);
-            row[1]=rs.getString(2);
-            row[2]=rs.getInt(3);
-            model.addRow(row);
-            }
-        } catch (SQLException ex) {
-        Logger.getLogger(Course.class.getName()).log(Level.SEVERE, null, ex);
-    }
-   }
+//    public void fillCourseJtable(JTable table){
+//        Connection con = Connectionbd.getConnection();
+//        PreparedStatement ps;
+//        try{
+//            ps=con.prepareStatement("SELECT * FROM `course`");
+//            ResultSet rs =ps.executeQuery();
+//            DefaultTableModel model=(DefaultTableModel)table.getModel();
+//            Object[] row;
+//            while(rs.next()){
+//            row=new Object[3];
+//            row[0]=rs.getInt(1);
+//            row[1]=rs.getString(2);
+//            row[2]=rs.getInt(3);
+//            model.addRow(row);
+//            }
+//        } catch (SQLException ex) {
+//        Logger.getLogger(Course.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+//   }
     //for course id in the score
     public int getCourseId(String courseLabel){
         int courseId=0;
@@ -156,6 +156,33 @@ public void insertUpdateDeleteStudent(char operation, Integer id, String Label,I
          }
          }catch(SQLException ex){
          Logger.getLogger(Course.class.getName()).log(Level.SEVERE, null, ex);
+         }}
+     
+    
+    public void fillCourseJtable(JTable table){
+         Connection con=Connectionbd.getConnection();
+         PreparedStatement ps;
+         try{
+         ps=con.prepareStatement("SELECT * FROM course");
+        ResultSet rs=ps.executeQuery();
+         DefaultTableModel model=(DefaultTableModel) table.getModel();
+         Object[] row;
+         
+         while(rs.next()){
+             row=new Object[3];
+         row[0] = rs.getInt(1);
+          row[1] = rs.getString(2);
+          row[2] = rs.getInt(3);
+          
+          model.addRow(row);
          }
+         
+         
+         }catch(SQLException ex){
+         
+         Logger.getLogger(student.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    
     }
-}
+    
+    }
