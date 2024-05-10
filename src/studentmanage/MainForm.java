@@ -325,7 +325,7 @@ public class MainForm extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
 //importer yarbe tsdeq
         try {
-            File xmlFile = new File("C:\\Users\\Lenovo T460s\\OneDrive\\Documents\\NetBeansProjects\\projetjeee\\import.xml");
+            File xmlFile = new File("C:\\Users\\hp\\Documents\\NetBeansProjects\\StudentManage\\import.xml");
 
             // Lecture du fichier XML
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

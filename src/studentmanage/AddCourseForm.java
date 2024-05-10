@@ -228,6 +228,7 @@ public class AddCourseForm extends javax.swing.JFrame {
 //            jTextField_Phone.setText("");
 //            jRadioButtonFemale.setSelected(false);
 //            jRadioButtonMale.setSelected(false);
+System.exit(0);
 //
 //        }
     }//GEN-LAST:event_jButtonCancelActionPerformed
